@@ -114,14 +114,14 @@
     const roll = Math.random() * 100;
     const inspeccionado = roll < PROBABILIDAD;
 
-    resDiv.textContent = inspeccionado ? 'CON INSPECCION' : 'SIN INSPECCION';
+    resDiv.textContent = inspeccionado ? 'GRACIAS POR COPERAR CON SU SEGURIDAD' : 'FELIZ REGRESO A CASA';
     resDiv.className = 'result show ' + (inspeccionado ? 'si' : 'no');
 
     setTimeout(() => {
       resDiv.textContent = '\u00A0';
       resDiv.className = 'result';
       btn.disabled = false;
-    }, 3000);
+    }, 5000);
   }
 </script>
 </body>
