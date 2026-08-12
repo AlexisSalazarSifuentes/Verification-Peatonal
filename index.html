@@ -114,7 +114,7 @@
     const roll = Math.random() * 100;
     const inspeccionado = roll < PROBABILIDAD;
 
-    resDiv.textContent = inspeccionado ? 'SÍ INSPECCIONA' : 'NO INSPECCIONA';
+    resDiv.textContent = inspeccionado ? 'CON INSPECCION' : 'SIN INSPECCION';
     resDiv.className = 'result show ' + (inspeccionado ? 'si' : 'no');
 
     setTimeout(() => {
