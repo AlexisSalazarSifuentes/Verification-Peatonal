@@ -2,8 +2,18 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Inspección Aleatoria</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Inspección">
+
 <style>
   * { box-sizing: border-box; }
   html, body {
@@ -49,7 +59,6 @@
     font-weight: 700;
     color: #666;
   }
-
   button.check {
     width: 200px;
     height: 200px;
@@ -72,7 +81,6 @@
     cursor: not-allowed;
     box-shadow: none;
   }
-
   .result {
     flex-shrink: 0;
     margin-bottom: 40px;
@@ -94,38 +102,34 @@
 <body>
   <h1>Inspección Aleatoria</h1>
   <div class="subtitle">Verificación de personas</div>
-
   <div class="prob-row">
     <span>Probabilidad:</span>
     <span class="prob-fixed" id="probFixed">20%</span>
   </div>
-
   <div class="result" id="resPersona">&nbsp;</div>
-
   <button class="check" id="btnVerificar" onclick="evaluar()">VERIFICAR</button>
-
 <script>
   const PROBABILIDAD = 20; // % fijo, editar aquí para cambiar
-
   document.getElementById('probFixed').textContent = PROBABILIDAD + '%';
-
   function evaluar() {
     const btn = document.getElementById('btnVerificar');
     const resDiv = document.getElementById('resPersona');
-
     btn.disabled = true;
-
     const roll = Math.random() * 100;
     const inspeccionado = roll < PROBABILIDAD;
-
     resDiv.textContent = inspeccionado ? 'GRACIAS POR SU COOPERACION' : 'FELIZ REGRESO A CASA';
     resDiv.className = 'result show ' + (inspeccionado ? 'si' : 'no');
-
     setTimeout(() => {
       resDiv.textContent = '\u00A0';
       resDiv.className = 'result';
       btn.disabled = false;
     }, 2000);
+  }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js');
+    });
   }
 </script>
 </body>
