@@ -120,7 +120,7 @@
     <span class="prob-fixed" id="probFixed">20%</span>
   </div>
   <div class="result" id="resPersona">&nbsp;</div>
-  <button class="check" id="btnVerificar" onclick="evaluar()">VERIFICAR</button>
+  <button class="check" id="btnVerificar">VERIFICAR</button>
 <script>
   const PROBABILIDAD = 20; // % fijo, editar aquí para cambiar
   document.getElementById('probFixed').textContent = PROBABILIDAD + '%';
@@ -151,6 +151,21 @@
   document.addEventListener('selectstart', (e) => e.preventDefault());
   document.addEventListener('dragstart', (e) => e.preventDefault());
   document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+
+  const btnVerificar = document.getElementById('btnVerificar');
+  let toqueActivo = false;
+
+  function manejarToque(e) {
+    e.preventDefault();
+    if (toqueActivo || btnVerificar.disabled) return;
+    toqueActivo = true;
+    evaluar();
+    setTimeout(() => { toqueActivo = false; }, 50);
+  }
+
+  btnVerificar.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
+  btnVerificar.addEventListener('touchend', manejarToque, { passive: false });
+  btnVerificar.addEventListener('click', manejarToque);
 </script>
 </body>
 </html>
