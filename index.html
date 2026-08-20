@@ -19,6 +19,11 @@
   html, body {
     height: 100%;
     margin: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    overscroll-behavior: none;
+    touch-action: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
@@ -64,6 +69,7 @@
     color: #666;
   }
   button.check {
+    touch-action: manipulation;
     width: 400px;
     height: 400px;
     min-width: 400px;
@@ -144,6 +150,7 @@
   document.addEventListener('contextmenu', (e) => e.preventDefault());
   document.addEventListener('selectstart', (e) => e.preventDefault());
   document.addEventListener('dragstart', (e) => e.preventDefault());
+  document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
 </script>
 </body>
 </html>
